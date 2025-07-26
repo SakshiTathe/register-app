@@ -1,12 +1,19 @@
 pipeline {
     agent { label 'jen-agent' }
     tools {
-        jdk 'java17'
         maven 'maven'
     }
     environment {
     JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
     PATH = "$JAVA_HOME/bin:$PATH"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'java -version'
+                sh 'mvn -version'
+            }
+        }
     }
 	/*
     environment {
