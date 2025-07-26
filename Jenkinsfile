@@ -2,7 +2,7 @@ pipeline {
     agent { label 'jen-agent' }
     tools {
         jdk 'java17'
-        maven 'Maven'
+        maven 'maven'
     }
 	/*
     environment {
