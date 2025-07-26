@@ -1,9 +1,10 @@
 pipeline {
-    agent { label 'Jenkins-Agent' }
+    agent { label 'jen-agent' }
     tools {
-        jdk 'Java17'
-        maven 'Maven3'
+        jdk 'java17'
+        maven 'Maven'
     }
+	/*
     environment {
 	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
@@ -12,7 +13,7 @@ pipeline {
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-    }
+    }*/
     stages{
         stage("Cleanup Workspace"){
                 steps {
@@ -22,7 +23,7 @@ pipeline {
 
         stage("Checkout from SCM"){
                 steps {
-                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/Ashfaque-9x/register-app'
+                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/SakshiTathe/register-app'
                 }
         }
 
@@ -39,7 +40,7 @@ pipeline {
            }
        }
 
-       stage("SonarQube Analysis"){
+       /* stage("SonarQube Analysis"){
            steps {
 	           script {
 		        withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') { 
@@ -47,7 +48,7 @@ pipeline {
 		        }
 	           }	
            }
-       }
+       } 
 
        stage("Quality Gate"){
            steps {
@@ -111,5 +112,5 @@ pipeline {
                      subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
                      mimeType: 'text/html',to: "ashfaque.s510@gmail.com"
       }      
-   }
+   }*/
 }
